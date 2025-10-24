@@ -4,6 +4,8 @@ server:
 spring:
   main:
     banner-mode: OFF
+  jackson:
+    time-zone: UTC
   datasource:
     username: ${DATABASE_USERNAME:device_manager_user}
     password: ${DATABASE_PASSWORD:device_manager_password}
@@ -30,6 +32,10 @@ spring:
         format_sql: true
         naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
         default_schema: ${DATABASE_SCHEMA:device_manager}
+      properties:
+        hibernate:
+          jdbc:
+            time_zone: UTC
 
   logging:
     level:

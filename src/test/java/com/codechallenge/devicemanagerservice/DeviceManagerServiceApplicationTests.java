@@ -1,4 +1,4 @@
-package com.codechallenge.device_manager_service;
+package com.codechallenge.devicemanagerservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
