@@ -4,6 +4,9 @@ server:
 spring:
   main:
     banner-mode: OFF
+  sql:
+    init:
+      mode: always
   jackson:
     time-zone: UTC
   datasource:
