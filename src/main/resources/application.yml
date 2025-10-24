@@ -1,0 +1,36 @@
+server:
+  address: ${APP_HOST:0.0.0.0}
+  port: ${APP_PORT:8080}
+spring:
+  main:
+    banner-mode: OFF
+  datasource:
+    username: ${DATABASE_USERNAME:device_manager_user}
+    password: ${DATABASE_PASSWORD:device_manager_password}
+    url: jdbc:postgresql://${POSTGRESQL_HOST:localhost}:${POSTGRESQL_PORT:5432}/${DATABASE_NAME:device_manager_db}
+    driver-class-name: org.postgresql.Driver
+  data:
+    jpa:
+      repositories:
+        enabled: true
+
+  jpa:
+    database: POSTGRESQL
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    defer-datasource-initialization: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      javax:
+        persistence:
+          create-database-schemas: true
+      hibernate:
+        generate_statistics: true
+        format_sql: true
+        naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+        default_schema: ${DATABASE_SCHEMA:device_manager}
+
+  logging:
+    level:
+      org.springframework: INFO
