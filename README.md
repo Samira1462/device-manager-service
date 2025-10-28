@@ -32,33 +32,12 @@ This service supports creating, updating, deleting, searching, and listing devic
 
 ---
 
-## ⚙️ Project Structure
-
-```
-src/
- ├── main/
- │   ├── java/com/codechallenge/devicemanagerservice/
- │   │   ├── controllers/       # REST controllers
- │   │   ├── dto/               # Data Transfer Objects
- │   │   ├── model/             # Entities & enums
- │   │   ├── repository/        # JPA repositories
- │   │   ├── service/           # Business logic layer
- │   │   ├── swagger/           # Swagger interface definitions
- │   │   └── config/            # App & Swagger configuration
- │   └── resources/
- │       ├── application.yml    # Environment configuration
- │       └── schema.sql/data.sql (if applicable)
- └── test/
-     ├── java/...               # Unit & integration tests
-```
-
----
-
 ## 🛠️ Prerequisites
 
 - **Java 21+**
 - **Maven 3.8+**
 - **PostgreSQL 16**
+- **Docker**
 
 ---
 
