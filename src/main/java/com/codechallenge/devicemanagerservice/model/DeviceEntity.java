@@ -16,7 +16,13 @@ import java.time.Instant;
 @NoArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "device_table")
+@Table(
+        name = "device50_table",
+        indexes = {
+                @Index(name = "idx_device_brand", columnList = "brand"),
+                @Index(name = "idx_device_state", columnList = "state")
+        }
+)
 public class DeviceEntity {
 
     @Id

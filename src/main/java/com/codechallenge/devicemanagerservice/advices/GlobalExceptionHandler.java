@@ -52,7 +52,7 @@ public class GlobalExceptionHandler {
                 fieldErrors
         );
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
 

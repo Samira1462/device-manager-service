@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,7 +47,7 @@ public interface DeviceManagerApi {
             @ApiResponse(responseCode = "400", description = "Validation failed",
                     content = @Content(schema = @Schema(implementation = ErrorResponseDto.class)))
     })
-    ResponseEntity<DeviceResponseDto> getDevice(@PathVariable Long id);
+    ResponseEntity<DeviceResponseDto> getDevice(@PathVariable @Min(1) Long id);
 
     @Operation(summary = "get all device", description = "get all device.")
     @ApiResponses({
@@ -61,7 +62,7 @@ public interface DeviceManagerApi {
             @ApiResponse(responseCode = "400", description = "Validation failed",
                     content = @Content(schema = @Schema(implementation = ErrorResponseDto.class)))
     })
-    ResponseEntity<Void> deleteDevice(@PathVariable Long id);
+    ResponseEntity<Void> deleteDevice(@PathVariable @Min(1) Long id);
 
     @Operation(summary = "search device", description = "search all device base on brand or state.")
     @ApiResponses({
