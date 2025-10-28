@@ -12,6 +12,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.time.Instant;
 import java.util.List;
@@ -44,28 +45,28 @@ public class GlobalExceptionHandler {
                 ))
                 .toList();
 
-        ErrorResponseDto response = new ErrorResponseDto(
+        ErrorResponseDto error = new ErrorResponseDto(
                 "VALIDATION_ERROR",
                 "Invalid input values",
                 Instant.now(),
                 fieldErrors
         );
 
-        return ResponseEntity.badRequest().body(response);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorResponseDto> handleValidation(HttpMessageNotReadableException ex) {
 
-        ErrorResponseDto response = new ErrorResponseDto(
+        ErrorResponseDto error = new ErrorResponseDto(
                 "VALIDATION_ERROR",
                 ex.getMessage(),
                 Instant.now(),
               null
         );
 
-        return ResponseEntity.badRequest().body(response);
+        return ResponseEntity.badRequest().body(error);
     }
 
     @ExceptionHandler(DeviceNotFoundException.class)
@@ -100,6 +101,18 @@ public class GlobalExceptionHandler {
                 List.of()
         );
         return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<ErrorResponseDto> handleTypeMismatch(MethodArgumentTypeMismatchException ex) {
+        ErrorResponseDto error = new ErrorResponseDto(
+                "VALIDATION_ERROR",
+                ex.getMessage(),
+                Instant.now(),
+                null
+        );
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error
+        );
     }
 
 }
