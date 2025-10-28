@@ -1,8 +1,6 @@
 package com.codechallenge.devicemanagerservice.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,18 +23,15 @@ public class DeviceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Device name cannot be blank")
     @Size(max = 100)
     @Column(nullable = false)
     private String name;
 
-    @NotBlank(message = "Brand cannot be blank")
     @Size(max = 100)
     @Column(nullable = false)
     private String brand;
 
     @Enumerated(EnumType.STRING)
-    @NotNull(message = "Device state is required")
     @Column(nullable = false)
     private DeviceState state;
 
@@ -47,5 +42,17 @@ public class DeviceEntity {
     @LastModifiedDate
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
+
+    @PrePersist
+    public void prePersist() {
+        Instant now = Instant.now();
+        if (createdAt == null) createdAt = now;
+        if (updatedAt == null) updatedAt = now;
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        updatedAt = Instant.now();
+    }
 
 }

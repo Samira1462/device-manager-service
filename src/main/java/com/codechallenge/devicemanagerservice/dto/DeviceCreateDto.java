@@ -12,9 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class DeviceDto {
-
-    private Long id;
+public class DeviceCreateDto {
 
     @NotBlank(message = "Name is required")
     private String name;
@@ -23,5 +21,5 @@ public class DeviceDto {
     private String brand;
 
     @NotNull(message = "State is required")
-    private String state;
+    private DeviceState state;
 }
