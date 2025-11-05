@@ -12,7 +12,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @Import(ContainersConfig.class)
 public abstract class AbstractTest {
     @LocalServerPort
-    int port;
+    public int port;
 
     @BeforeEach
     void setUp() {

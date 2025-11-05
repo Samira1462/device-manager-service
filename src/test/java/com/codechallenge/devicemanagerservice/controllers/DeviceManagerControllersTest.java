@@ -7,14 +7,12 @@ import com.codechallenge.devicemanagerservice.dto.DeviceUpdateDto;
 import com.codechallenge.devicemanagerservice.model.DeviceEntity;
 import com.codechallenge.devicemanagerservice.model.DeviceState;
 import com.codechallenge.devicemanagerservice.repository.DeviceRepository;
-import com.codechallenge.devicemanagerservice.service.DeviceService;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 
 import java.time.Instant;
@@ -26,13 +24,7 @@ import static org.hamcrest.Matchers.*;
 class DeviceManagerControllersTest extends AbstractTest {
 
     @Inject
-    DeviceService deviceService;
-
-    @Inject
     DeviceRepository deviceRepository;
-
-    @LocalServerPort
-    int port;
 
     @Nested
     class SaveTests {
