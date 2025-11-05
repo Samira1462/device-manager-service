@@ -60,7 +60,7 @@ public class DeviceManagerControllers implements DeviceManagerApi {
 
     @Override
     @GetMapping("/{id}")
-    public ResponseEntity<DeviceResponseDto> getDevice(@PathVariable @Min(1) Long id) {
+    public ResponseEntity<DeviceResponseDto> getDevice(@PathVariable Long id) {
         DeviceResponseDto device = deviceService.getById(id)
                 .orElseThrow(() -> new DeviceNotFoundException(id));
         return ResponseEntity.ok(device);
@@ -87,7 +87,7 @@ public class DeviceManagerControllers implements DeviceManagerApi {
 
     @Override
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteDevice(@PathVariable @Min(1) Long id) {
+    public ResponseEntity<Void> deleteDevice(@PathVariable Long id) {
         deviceService.deleteDevice(id);
         return ResponseEntity.noContent().build();
     }

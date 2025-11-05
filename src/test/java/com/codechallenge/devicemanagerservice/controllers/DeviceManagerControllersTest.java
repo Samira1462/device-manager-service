@@ -196,7 +196,6 @@ class DeviceManagerControllersTest extends AbstractTest {
 
             Long deviceId = createdResponse.getId();
 
-            // Now test GET
             RestAssured.given()
                     .contentType(ContentType.JSON)
                     .baseUri("http://localhost")
